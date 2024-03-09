@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Feed</h2>
+        <div id="feedContainer" class="feed-container">
+            <!-- Aici vei afișa utilizatorii care fac schimb de obiecte -->
+            <!-- Exemplu: -->
+            <div class="user">
+                <img src="user1.jpg" alt="User 1">
+                <div class="user-details">
+                    <h3>User 1</h3>
+                    <p>Obiect: Telefon</p>
+                    <button onclick="acceptExchange('User 1')">Acceptă schimbul</button>
+                    <button onclick="rejectExchange('User 1')">Refuză schimbul</button>
+                </div>
+            </div>
+            <div class="user">
+                <img src="user2.jpg" alt="User 2">
+                <div class="user-details">
+                    <h3>User 2</h3>
+                    <p>Obiect: Laptop</p>
+                    <button onclick="acceptExchange('User 2')">Acceptă schimbul</button>
+                    <button onclick="rejectExchange('User 2')">Refuză schimbul</button>
+                </div>
+            </div>
+            <!-- Alți utilizatori pot fi adăugați aici -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
