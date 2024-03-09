@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registerForm" action="#" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne trimiterea formularului
+
+            // Obține datele introduse de utilizator
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var email = document.getElementById('email').value;
+
+            // Creează un conținut de text cu datele introduse
+            var data = 'Username: ' + username + '\nPassword: ' + password + '\nEmail: ' + email;
+
+            // Creează un obiect Blob cu datele și un obiect URL pentru descărcare
+            var blob = new Blob([data], { type: 'text/plain' });
+            var url = window.URL.createObjectURL(blob);
+
+            // Creează un element de ancoră pentru descărcare și declanșează clicul pe el
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'register_data.txt';
+            document.body.appendChild(a);
+            a.click();
+
+            // Curăță elementul de ancoră și eliberează URL-ul obiectului
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

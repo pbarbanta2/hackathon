@@ -1,0 +1,54 @@
+﻿const chatMessages = document.getElementById('chatMessages');
+const messageInput = document.getElementById('messageInput');
+
+
+// Funcție pentru trimiterea unui mesaj către serverul backend
+function sendMessageToBackend(message) {
+  // Aici folosește metoda fetch sau alte metode pentru a trimite mesajul către backend
+  fetch('/api/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      message: message,
+      recipient: 'ID-ul destinatarului', // Înlocuiește cu ID-ul real al destinatarului
+    }),
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Mesajul a fost trimis către backend cu succes.');
+    } else {
+      console.error('Eroare la trimiterea mesajului către backend.');
+    }
+  })
+  .catch(error => {
+    console.error('Eroare la trimiterea mesajului către backend:', error);
+  });
+}
+
+
+// Funcție pentru trimiterea unui mesaj
+function sendMessage() {
+  const messageText = messageInput.value.trim();
+  if (messageText !== '') {
+    displayMessage(messageText, 'sent');
+    sendMessageToBackend(messageText); // Trimite mesajul către backend
+    messageInput.value = '';
+  }
+}
+
+
+// Funcție pentru afișarea unui mesaj în interfața de chat
+function displayMessage(message, type) {
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message', type);
+  messageElement.innerText = message;
+  chatMessages.appendChild(messageElement);
+}
+
+
+// Exemplu de mesaje primite
+displayMessage('Bună! Aș dori să discutăm despre obiectul tău de vânzare.', 'received');
+displayMessage('Desigur, ce te interesează?', 'sent');
+displayMessage('Am văzut că vinzi un laptop. Pot să-ți pun câteva întrebări despre el?', 'received');
